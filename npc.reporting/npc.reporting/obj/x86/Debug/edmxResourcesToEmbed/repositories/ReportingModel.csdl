@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ReportingModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+  <EntityContainer Name="ReportingModelContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Areas" EntityType="ReportingModel.Area" />
+    <EntitySet Name="Regions" EntityType="ReportingModel.Region" />
+    <AssociationSet Name="AreaRegion" Association="ReportingModel.AreaRegion">
+      <End Role="Area" EntitySet="Areas" />
+      <End Role="Region" EntitySet="Regions" />
+    </AssociationSet>
+    <EntitySet Name="Plants" EntityType="ReportingModel.Plant" />
+    <AssociationSet Name="RegionPlant" Association="ReportingModel.RegionPlant">
+      <End Role="Region" EntitySet="Regions" />
+      <End Role="Plant" EntitySet="Plants" />
+    </AssociationSet>
+    <EntitySet Name="Data" EntityType="ReportingModel.Data" />
+    <AssociationSet Name="PlantData" Association="ReportingModel.PlantData">
+      <End Role="Plant" EntitySet="Plants" />
+      <End Role="Data" EntitySet="Data" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Area">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="areaName" Nullable="false" />
+    <NavigationProperty Name="Regions" Relationship="ReportingModel.AreaRegion" FromRole="Area" ToRole="Region" />
+  </EntityType>
+  <EntityType Name="Region">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="regionName" Nullable="false" />
+    <NavigationProperty Name="Area" Relationship="ReportingModel.AreaRegion" FromRole="Region" ToRole="Area" />
+    <NavigationProperty Name="Plants" Relationship="ReportingModel.RegionPlant" FromRole="Region" ToRole="Plant" />
+  </EntityType>
+  <Association Name="AreaRegion">
+    <End Type="ReportingModel.Area" Role="Area" Multiplicity="1" />
+    <End Type="ReportingModel.Region" Role="Region" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Plant">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="plantName" Nullable="false" />
+    <NavigationProperty Name="Region" Relationship="ReportingModel.RegionPlant" FromRole="Plant" ToRole="Region" />
+    <NavigationProperty Name="Data" Relationship="ReportingModel.PlantData" FromRole="Plant" ToRole="Data" />
+  </EntityType>
+  <Association Name="RegionPlant">
+    <End Type="ReportingModel.Region" Role="Region" Multiplicity="1" />
+    <End Type="ReportingModel.Plant" Role="Plant" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Data">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Double" Name="d2008" Nullable="false" />
+    <Property Type="Double" Name="d2009" Nullable="false" />
+    <Property Type="Double" Name="d2010" Nullable="false" />
+    <Property Type="Double" Name="d2011" Nullable="false" />
+    <Property Type="Double" Name="d2012" Nullable="false" />
+    <Property Type="Double" Name="d2013" Nullable="false" />
+    <Property Type="Double" Name="d2014" Nullable="false" />
+    <Property Type="Double" Name="d2015" Nullable="false" />
+    <Property Type="Double" Name="d2016" Nullable="false" />
+    <Property Type="Double" Name="d2017" Nullable="false" />
+    <Property Type="Double" Name="d2018" Nullable="false" />
+    <Property Type="Double" Name="d2019" Nullable="false" />
+    <Property Type="Double" Name="d2020" Nullable="false" />
+    <Property Type="Double" Name="d2021" Nullable="false" />
+    <Property Type="Double" Name="d2022" Nullable="false" />
+    <NavigationProperty Name="Plant" Relationship="ReportingModel.PlantData" FromRole="Data" ToRole="Plant" />
+  </EntityType>
+  <Association Name="PlantData">
+    <End Type="ReportingModel.Plant" Role="Plant" Multiplicity="1" />
+    <End Type="ReportingModel.Data" Role="Data" Multiplicity="*" />
+  </Association>
+</Schema>

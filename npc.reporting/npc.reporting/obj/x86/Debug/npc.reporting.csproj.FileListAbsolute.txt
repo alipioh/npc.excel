@@ -1,0 +1,11 @@
+C:\Documents and Settings\User\Desktop\excelrepo\npc.reporting\npc.reporting\bin\Debug\npc.reporting.exe.config
+C:\Documents and Settings\User\Desktop\excelrepo\npc.reporting\npc.reporting\bin\Debug\npc.reporting.exe
+C:\Documents and Settings\User\Desktop\excelrepo\npc.reporting\npc.reporting\bin\Debug\npc.reporting.pdb
+C:\Documents and Settings\User\Desktop\excelrepo\npc.reporting\npc.reporting\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\User\Desktop\excelrepo\npc.reporting\npc.reporting\obj\x86\Debug\npc.reporting.frmAreas.resources
+C:\Documents and Settings\User\Desktop\excelrepo\npc.reporting\npc.reporting\obj\x86\Debug\npc.reporting.frmMain.resources
+C:\Documents and Settings\User\Desktop\excelrepo\npc.reporting\npc.reporting\obj\x86\Debug\npc.reporting.Properties.Resources.resources
+C:\Documents and Settings\User\Desktop\excelrepo\npc.reporting\npc.reporting\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Documents and Settings\User\Desktop\excelrepo\npc.reporting\npc.reporting\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Documents and Settings\User\Desktop\excelrepo\npc.reporting\npc.reporting\obj\x86\Debug\npc.reporting.exe
+C:\Documents and Settings\User\Desktop\excelrepo\npc.reporting\npc.reporting\obj\x86\Debug\npc.reporting.pdb

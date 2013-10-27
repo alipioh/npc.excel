@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl" Namespace="ReportingModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="ReportingModelTargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ReportingModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+        <EntityContainer Name="ReportingModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Areas" EntityType="ReportingModel.Area" />
+          <EntitySet Name="Regions" EntityType="ReportingModel.Region" />
+          <AssociationSet Name="AreaRegion" Association="ReportingModel.AreaRegion">
+            <End Role="Area" EntitySet="Areas" />
+            <End Role="Region" EntitySet="Regions" />
+          </AssociationSet>
+          <EntitySet Name="Plants" EntityType="ReportingModel.Plant" />
+          <AssociationSet Name="RegionPlant" Association="ReportingModel.RegionPlant">
+            <End Role="Region" EntitySet="Regions" />
+            <End Role="Plant" EntitySet="Plants" />
+          </AssociationSet>
+          <EntitySet Name="Data" EntityType="ReportingModel.Data" />
+          <AssociationSet Name="PlantData" Association="ReportingModel.PlantData">
+            <End Role="Plant" EntitySet="Plants" />
+            <End Role="Data" EntitySet="Data" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Area">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="areaName" Nullable="false" />
+          <NavigationProperty Name="Regions" Relationship="ReportingModel.AreaRegion" FromRole="Area" ToRole="Region" />
+        </EntityType>
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="regionName" Nullable="false" />
+          <NavigationProperty Name="Area" Relationship="ReportingModel.AreaRegion" FromRole="Region" ToRole="Area" />
+          <NavigationProperty Name="Plants" Relationship="ReportingModel.RegionPlant" FromRole="Region" ToRole="Plant" />
+        </EntityType>
+        <Association Name="AreaRegion">
+          <End Type="ReportingModel.Area" Role="Area" Multiplicity="1" />
+          <End Type="ReportingModel.Region" Role="Region" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Plant">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="plantName" Nullable="false" />
+          <NavigationProperty Name="Region" Relationship="ReportingModel.RegionPlant" FromRole="Plant" ToRole="Region" />
+          <NavigationProperty Name="Data" Relationship="ReportingModel.PlantData" FromRole="Plant" ToRole="Data" />
+        </EntityType>
+        <Association Name="RegionPlant">
+          <End Type="ReportingModel.Region" Role="Region" Multiplicity="1" />
+          <End Type="ReportingModel.Plant" Role="Plant" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Data">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Double" Name="d2008" Nullable="false" />
+          <Property Type="Double" Name="d2009" Nullable="false" />
+          <Property Type="Double" Name="d2010" Nullable="false" />
+          <Property Type="Double" Name="d2011" Nullable="false" />
+          <Property Type="Double" Name="d2012" Nullable="false" />
+          <Property Type="Double" Name="d2013" Nullable="false" />
+          <Property Type="Double" Name="d2014" Nullable="false" />
+          <Property Type="Double" Name="d2015" Nullable="false" />
+          <Property Type="Double" Name="d2016" Nullable="false" />
+          <Property Type="Double" Name="d2017" Nullable="false" />
+          <Property Type="Double" Name="d2018" Nullable="false" />
+          <Property Type="Double" Name="d2019" Nullable="false" />
+          <Property Type="Double" Name="d2020" Nullable="false" />
+          <Property Type="Double" Name="d2021" Nullable="false" />
+          <Property Type="Double" Name="d2022" Nullable="false" />
+          <NavigationProperty Name="Plant" Relationship="ReportingModel.PlantData" FromRole="Data" ToRole="Plant" />
+        </EntityType>
+        <Association Name="PlantData">
+          <End Type="ReportingModel.Plant" Role="Plant" Multiplicity="1" />
+          <End Type="ReportingModel.Data" Role="Data" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="ReportingModel" />
+        <Alias Key="Target" Value="ReportingModel.Store" />
+        <EntityContainerMapping CdmEntityContainer="ReportingModelContainer" StorageEntityContainer="ReportingModelTargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram Name="ReportingModel" >
+        <EntityTypeShape EntityType="ReportingModel.Area" Width="1.5" PointX="0.75" PointY="0.75" Height="1.2636116536458335" />
+        <EntityTypeShape EntityType="ReportingModel.Region" Width="1.5" PointX="3.375" PointY="0.75" Height="1.2636116536458335" />
+        <AssociationConnector Association="ReportingModel.AreaRegion">
+          <ConnectorPoint PointX="2.25" PointY="1.4639794921875002" />
+          <ConnectorPoint PointX="3.375" PointY="1.4639794921875002" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="ReportingModel.Plant" Width="1.5" PointX="0.75" PointY="3.5" Height="1.5923063151041665" />
+        <AssociationConnector Association="ReportingModel.RegionPlant">
+          <ConnectorPoint PointX="3.375" PointY="2.3423063151041665" />
+          <ConnectorPoint PointX="3" PointY="2.7173063151041665" />
+          <ConnectorPoint PointX="3" PointY="4.2961531575520837" />
+          <ConnectorPoint PointX="2.25" PointY="4.2961531575520837" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="ReportingModel.Data" Width="1.5" PointX="3.375" PointY="2.75" Height="3.5644742838541656" />
+        <AssociationConnector Association="ReportingModel.PlantData">
+          <ConnectorPoint PointX="2.25" PointY="3.8355765787760419" />
+          <ConnectorPoint PointX="2.9166666666666665" PointY="3.8355765787760414" />
+          <ConnectorPoint PointX="3.0833333333333335" PointY="3.8355765787760419" />
+          <ConnectorPoint PointX="3.375" PointY="3.8355765787760419" />
+        </AssociationConnector>
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
